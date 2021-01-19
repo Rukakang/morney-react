@@ -4,10 +4,11 @@ import {
     Switch,
     Route,
     Redirect,
-    useLocation
 } from "react-router-dom";
-import Nav from "components/Nav";
-import Layout from "components/Layout";
+import Money from "./views/Money";
+import Statistics from "./views/Statistics";
+import Tags from "./views/Tags";
+import NoMatch from "./views/NotFound";
 
 function App() {
     return(
@@ -29,36 +30,6 @@ function App() {
             </Switch>
         </Router>
     )
-}
-
-function Statistics() {
-    return (
-        <Layout>
-            <h2>统计页</h2>
-        </Layout>
-    );
-}
-
-function Tags() {
-    return (
-        <Layout>
-            <h2>标签页</h2>
-        </Layout>
-    );
-}
-
-function Money() {
-    return (
-        <Layout>
-            <h2>记账页</h2>
-        </Layout>
-    );
-}
-function NoMatch() {
-    let location = useLocation();
-    return (
-        <h3>404 NOT FOUND <code>{location.pathname}</code></h3>
-    );
 }
 
 
