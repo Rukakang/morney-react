@@ -6,19 +6,8 @@ import {
     Redirect,
     useLocation
 } from "react-router-dom";
-import styled from "styled-components";
-import Nav from "./components/Nav";
-
-
-const Wrapper = styled.div`
-    min-height: 100vh;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-`;
-const Main =styled.div`
-    flex-grow: 1;
-`;
+import Nav from "components/Nav";
+import Layout from "components/Layout";
 
 function App() {
     return(
@@ -44,45 +33,31 @@ function App() {
 
 function Statistics() {
     return (
-        <Wrapper>
-            <Main>
-                <h2>统计页</h2>
-            </Main>
-            <Nav/>
-        </Wrapper>
+        <Layout>
+            <h2>统计页</h2>
+        </Layout>
     );
 }
 
 function Tags() {
     return (
-        <Wrapper>
-            <Main>
-                <h2>标签页</h2>
-            </Main>
-            <Nav/>
-        </Wrapper>
+        <Layout>
+            <h2>标签页</h2>
+        </Layout>
     );
 }
 
 function Money() {
     return (
-        <Wrapper>
-            <Main>
-                <h2>记账页</h2>
-            </Main>
-            <Nav/>
-        </Wrapper>
+        <Layout>
+            <h2>记账页</h2>
+        </Layout>
     );
 }
 function NoMatch() {
     let location = useLocation();
-
     return (
-        <Wrapper>
-            <Main>
-                <h3>404 NOT FOUND <code>{location.pathname}</code></h3>
-            </Main>
-        </Wrapper>
+        <h3>404 NOT FOUND <code>{location.pathname}</code></h3>
     );
 }
 
