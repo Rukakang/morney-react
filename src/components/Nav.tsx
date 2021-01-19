@@ -23,7 +23,10 @@ const NavWrapper =styled.nav`
               height: 24px;
             }
             &.selected{
-              color: #4119ff;
+              color: aqua;
+              .icon{
+                fill: aqua;
+              }
             }
         }
         
