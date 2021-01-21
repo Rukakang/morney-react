@@ -7,10 +7,6 @@ import NotesSection from "./Money/NotesSection";
 import NumberPadSection from "./Money/NumberPadSection";
 import {TagsSection} from "./Money/TagsSection";
 
-
-
-
-
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
