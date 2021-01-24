@@ -25,7 +25,6 @@ const Wrapper =styled.section`
 const NotesSection:React.FunctionComponent = ()=>{
     const [note,setNote]=useState<string>('');
     const refInput = useRef<HTMLInputElement>(null);
-    console.log(refInput);
     const onBlur=()=>{
         if(refInput.current!==null){
             setNote(refInput.current.value);

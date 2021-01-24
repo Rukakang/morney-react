@@ -1,11 +1,10 @@
 import Layout from "../components/Layout";
 import React from "react";
 import styled from "styled-components";
-
-import CategorySection from "./Money/CategorySection";
 import NumberPadSection from "./Money/NumberPadSection";
 import {TagsSection} from "./Money/TagsSection";
 import {NotesSection} from "./Money/NotesSection";
+import {CategorySection} from "./Money/CategorySection";
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -16,12 +15,7 @@ function Money() {
         <MyLayout >
             <TagsSection/>
             <NotesSection/>
-            <CategorySection>
-                <ul>
-                    <li className="selected">支出</li>
-                    <li>收入</li>
-                </ul>
-            </CategorySection>
+            <CategorySection/>
             <NumberPadSection>
                 <div className="output">
                     100
