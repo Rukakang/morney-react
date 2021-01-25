@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import React, {useState} from "react";
 import Wrapper from "./NumberPadSection/Wrapper";
 import generateOutput from "./NumberPadSection/generateOutput";
