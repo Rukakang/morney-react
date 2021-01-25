@@ -24,10 +24,11 @@ const Wrapper = styled.section`
     }
   }
 `;
-type Props={
-    value:string,
-    onChange:(category:string)=>{}
+type Props= {
+    value: string,
+    onChange: (category: '-'|'+') => void
 }
+
 const CategorySection:React.FunctionComponent<Props> = (props)=>{
     const category =props.value;
     const categoryMap ={'-':'支出','+':'收入'};

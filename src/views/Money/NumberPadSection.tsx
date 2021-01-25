@@ -3,8 +3,9 @@ import Wrapper from "./NumberPadSection/Wrapper";
 import generateOutput from "./NumberPadSection/generateOutput";
 
 type Props = {
-    value:number,
-    onChange:(amount:number)=>void;
+    value: number,
+    onChange: (amount: number) => void;
+    onOk: () => void;
 }
 
 const NumberPadSection:React.FunctionComponent<Props>=(props)=>{
@@ -26,7 +27,9 @@ const NumberPadSection:React.FunctionComponent<Props>=(props)=>{
         if (text===null){return}
         setOutput(generateOutput(text ,output));
 
-        if (text==='OK'){return;}
+        if (text==='OK'){
+            props.onOk();
+        }
 
 
 

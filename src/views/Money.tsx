@@ -11,36 +11,29 @@ const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `
-type Category = '-'|'+'
+type Category = '-'|'+';
 function Money() {
     const [selected,setSelected]=useState({
         tags:[] as string[],
         note:'',
         category:'-' as Category,
         amount:0
-    })
+    });
+    const onChange = (obj:Partial<typeof selected>)=>setSelected({
+        ...selected,
+        ...obj
+    });
     return (
         <MyLayout >
             <TagsSection value={selected.tags}
-                         onChange ={tags=>setSelected({
-                             ...selected,
-                             tags: tags
-                         })}/>
+                         onChange ={tags=>onChange({tags:tags})}/>
             <NotesSection value={selected.note}
-                        onChange = {(note)=>({
-                            ...selected,
-                            note:note
-                        })}/>
+                        onChange = {(note)=>onChange({note:note})}/>
             <CategorySection value={selected.category}
-                             onChange = {(category)=>({
-                                 ...selected,
-                                 category:category
-                             })}/>
+                             onChange = {(category)=>onChange({category: category})}/>
             <NumberPadSection value={selected.amount}
-                              onChange = {(amount)=>({
-                                  ...selected,
-                                  amount:amount
-                              })}/>
+                              onChange = {(amount =>onChange({amount: amount}) )}
+                              onOk={()=>{}}/>
         </MyLayout>
     );
 }
