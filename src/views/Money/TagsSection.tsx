@@ -51,7 +51,7 @@ const  TagsSection:React.FunctionComponent<Props> =(props)=>{
   const onToggleTag=(tagIds:number)=>{
         const index = selectedTagIds.indexOf(tagIds);
         if (index>=0){
-            props.onChange(selectedTagIds.filter(t=>t!= tagIds));
+            props.onChange(selectedTagIds.filter(t=>t!== tagIds));
         }else {
             props.onChange([...selectedTagIds,tagIds]);
         }
