@@ -11,7 +11,7 @@ const Label = styled.label`
     >input{
     display: block;
       width: 100%;
-      height: 72px;
+      height: 44px;
       background: none;
       border: none;
     }
@@ -19,7 +19,7 @@ const Label = styled.label`
 
 type Props = {
     label:string;
-}& React.InputHTMLAttributes<HTMLInputElement>  //继承input的所有属性，就不用一个一个传了
+}& React.InputHTMLAttributes<HTMLInputElement>  //继承input的所有属性，就不用在Props里一个一个传了
 const Input:React.FunctionComponent<Props> = (props)=>{
     //...rest的意思就是除去label 和children以外props的所有属性即input的所有属性都给rest
     const {label,children,...rest} = props;
@@ -28,6 +28,7 @@ const Input:React.FunctionComponent<Props> = (props)=>{
             <span>{props.label}</span>
             <input type={props.type} placeholder={props.placeholder}
                    defaultValue={props.defaultValue}
+                   value ={props.value}
                    onBlur={props.onBlur}
                    //ref={refInput} 函数组件其实不支持ref,ref用于非受控组件，改成受控组件
             />
