@@ -26,10 +26,9 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `
 const Tag:React.FunctionComponent = ()=>{
-    const {findTag}=useTags();
+    const {findTag,updateTag}=useTags();
     let {id} = useParams<Params>();
     const tag =  findTag(parseInt(id));
-    console.log(tag.name)
     return(
         <Layout>
             <TopBar>
@@ -39,7 +38,9 @@ const Tag:React.FunctionComponent = ()=>{
             </TopBar>
             <InputWrapper>
                 <Input label="标签名" placeholder="在这里输入新的标签" type="text"
-                        value = {tag.name}/>
+                        value = {tag.name} onChange={(e)=>{
+                            updateTag(tag.id,{name:e.target.value});
+                }}/>
             </InputWrapper>
             <Center>
                 <Space/>
