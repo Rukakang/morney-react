@@ -26,11 +26,7 @@ const Input:React.FunctionComponent<Props> = (props)=>{
     return(
         <Label>
             <span>{props.label}</span>
-            <input type={props.type} placeholder={props.placeholder}
-                   defaultValue={props.defaultValue}
-                   value ={props.value}
-                   onChange={props.onChange}
-                   onBlur={props.onBlur}
+            <input {...rest}
                    //ref={refInput} 函数组件其实不支持ref,ref用于非受控组件，改成受控组件
             />
         </Label>
