@@ -1,6 +1,6 @@
 import React from "react";
 import {useTags} from "../useTags";
-import {useParams} from "react-router-dom";
+import {useParams,useHistory} from "react-router-dom";
 import Layout from "components/Layout";
 import Icon from "../components/Icon";
 import {Button} from "../components/Button";
@@ -46,11 +46,14 @@ const Tag:React.FunctionComponent = ()=>{
             </Center>
         </div>
     );
-
+    const history = useHistory();
+    const onClick = ()=>{
+        history.goBack();
+    }
     return(
         <Layout>
             <TopBar>
-                <Icon name="left"/>
+                <Icon onClick={onClick} name="left"/>
                 <span>编辑标签</span>
                 <Icon name=""/>
             </TopBar>
