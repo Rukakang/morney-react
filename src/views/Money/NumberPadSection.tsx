@@ -9,18 +9,19 @@ type Props = {
 }
 
 const NumberPadSection:React.FunctionComponent<Props>=(props)=>{
-    const output = props.value.toString();
+    const [output,_setOutput] = useState(props.value.toString());
     const setOutput =(output:string)=>{
-        let value;
+        console.log(output);
+        let newValue;
         if (output.length > 16){
-            value = parseFloat(output.slice(0,16));
+            newValue = output.slice(0,16);
         }else if (output.length === 0){
-            value = 0;
+            newValue = '0';
         }else {
-            value=parseFloat(output);
+            newValue=output;
         }
-        props.onChange(value);
-
+        _setOutput(newValue);
+        props.onChange(parseFloat(output));
     }
     const onClickButtonWrapper=(e:React.MouseEvent)=>{
         const text = (e.target as HTMLButtonElement).textContent;
@@ -30,9 +31,6 @@ const NumberPadSection:React.FunctionComponent<Props>=(props)=>{
         if (text==='OK'){
             props.onOk();
         }
-
-
-
     }
     return(
         <Wrapper>
