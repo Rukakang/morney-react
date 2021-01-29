@@ -6,25 +6,37 @@ import {TagsSection} from "./Money/TagsSection";
 import {NotesSection} from "./Money/NotesSection";
 import {CategorySection} from "./Money/CategorySection";
 import {NumberPadSection} from "./Money/NumberPadSection";
+import {useRecodes} from "../hooks/useRecodes";
 
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
-`
+`;
 type Category = '-'|'+';
+const defaultFormData = {
+    tagIds:[] as number[],
+    note:'',
+    category:'-' as Category,
+    amount:0
+};
 function Money() {
-    const [selected,setSelected]=useState({
-        tagIds:[] as number[],
-        note:'',
-        category:'-' as Category,
-        amount:0
-    });
+    const [selected,setSelected]=useState(defaultFormData);
     const onChange = (obj:Partial<typeof selected>)=>setSelected({
         ...selected,
         ...obj
     });
+
+    const{recodes,addRecode} = useRecodes();
+    const onSubmit = () =>{
+        if(addRecode(selected)){
+            alert('保存成功');
+            setSelected(defaultFormData);
+        }
+    }
     return (
         <MyLayout >
+            {JSON.stringify(selected)};
+            <hr/>
             <TagsSection value={selected.tagIds}
                          onChange ={tagIds=>onChange({tagIds:tagIds})}/>
             <NotesSection value={selected.note}
@@ -33,7 +45,7 @@ function Money() {
                              onChange = {(category)=>onChange({category: category})}/>
             <NumberPadSection value={selected.amount}
                               onChange = {(amount =>onChange({amount: amount}) )}
-                              onOk={()=>{}}/>
+                              onOk={onSubmit}/>
         </MyLayout>
     );
 }
