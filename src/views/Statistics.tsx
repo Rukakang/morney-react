@@ -1,8 +1,8 @@
 import Layout from "components/Layout";
-import React, {useState} from "react";
+import React, {ReactNode, useState} from "react";
 import {CategorySection} from "./Money/CategorySection";
 import styled from "styled-components";
-import {useRecodes} from "../hooks/useRecodes";
+import {RecodeItem, useRecodes} from "../hooks/useRecodes";
 import {useTags} from "../hooks/useTags";
 import dayjs from "dayjs";
 
@@ -22,11 +22,32 @@ const Item =styled.div`
     margin-left: 16px;
     color: #999;
   }
+`;
+const Header = styled.h3`
+  font-size: 18px;
+  line-height: 20px;
+  padding: 10px 16px;
 `
 function Statistics() {
     const [category,setCategory] = useState<'-'|'+'>('-');
     const {recodes} =useRecodes();
     const {getName} = useTags();
+    const hash:{[K:string]:RecodeItem[]} = {};
+    const selectedRecodes = recodes.filter(t=>t.category ===category);
+    selectedRecodes.map(r=>{
+        const key = dayjs(r.createAt).format('YYYY年MM月DD日');
+        if (!(key in hash)){
+            hash[key]=[];
+        }
+        hash[key].push(r);
+    })
+    const array = Object.entries(hash).sort((a,b)=>{
+        if (a[0]===b[0]){return 0}
+        if (a[0] > b[0]){return -1}
+        if (a[0] < b[0]){return 1}
+        return 0
+    })
+    console.log(array)
     return (
         <Layout>
             <CategoryWrapper>
@@ -34,28 +55,39 @@ function Statistics() {
                                  onChange={value=>setCategory(value)}>
                 </CategorySection>
             </CategoryWrapper>
-            <div>
-                {recodes.map(
-                    r=>{
-                        return (
-                            <Item>
-                                <div className="tags">
-                                    {r.tagIds.map(
-                                        tagId => <span>{getName(tagId)}</span>)
-                                    }
-                                </div>
-                                {r.note &&<div className="note">
-                                    {r.note}
-                                </div>}
-                                <div className = "amount">
-                                    ￥{r.amount}
-                                </div>
-                                {/*{dayjs(r.createAt).format('YYYY年MM月DD日')}*/}
-                            </Item>
-                        )
-                    }
-                )}
-            </div>
+            {array.map(([date,recodes])=>
+                <div key={date}>
+                    <Header>
+                        {date}
+                    </Header>
+                    <div>
+                        {recodes.map(
+                            (r,index)=>{
+                                return (
+                                    <Item key={index}>
+                                        <div className="tags" >
+                                            {r.tagIds
+                                                .map(tagId => <span key={tagId}>{getName(tagId)}</span>)
+                                                .reduce((result,span,index,array)=>
+                                                    result.concat(index<array.length-1?[span,'，']:[span]),[] as ReactNode[])
+                                            }
+                                        </div>
+                                        {r.note &&<div className="note" >
+                                            {r.note}
+                                        </div>}
+                                        <div className = "amount" >
+                                            ￥{r.amount}
+                                        </div>
+                                        {/*{dayjs(r.createAt).format('YYYY年MM月DD日')}*/}
+                                    </Item>
+                                )
+                            }
+                        )}
+                    </div>
+                </div>
+
+            )}
+
         </Layout>
     );
 }

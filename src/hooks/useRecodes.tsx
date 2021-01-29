@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {useUpdate} from "./useUpdate";
 
-type RecodeItem = {
+export type RecodeItem = {
     tagIds:number[];
     note:string;
     category:'-'|'+';
