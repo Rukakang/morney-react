@@ -29,6 +29,7 @@ const useRecodes = () =>{
         const recode = {...newRecode,createAt:(new Date()).toISOString()}
         setRecodes([...recodes,recode])
     }
+
     return {recodes,addRecode};
 }
 export {useRecodes};

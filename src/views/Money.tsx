@@ -12,6 +12,10 @@ const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `;
+const CategoryWrapper = styled.div`
+  background: #c4c4c4;
+`
+
 type Category = '-'|'+';
 const defaultFormData = {
     tagIds:[] as number[],
@@ -35,14 +39,15 @@ function Money() {
     }
     return (
         <MyLayout >
-            {JSON.stringify(selected)};
-            <hr/>
             <TagsSection value={selected.tagIds}
                          onChange ={tagIds=>onChange({tagIds:tagIds})}/>
             <NotesSection value={selected.note}
                         onChange = {(note)=>onChange({note:note})}/>
-            <CategorySection value={selected.category}
-                             onChange = {(category)=>onChange({category: category})}/>
+            <CategoryWrapper>
+                <CategorySection value={selected.category}
+                                 onChange = {(category)=>onChange({category: category})}/>
+            </CategoryWrapper>
+
             <NumberPadSection value={selected.amount}
                               onChange = {(amount =>onChange({amount: amount}) )}
                               onOk={onSubmit}/>
