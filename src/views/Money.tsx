@@ -30,7 +30,7 @@ function Money() {
         ...obj
     });
 
-    const{recodes,addRecode} = useRecodes();
+    const{addRecode} = useRecodes();
     const onSubmit = () =>{
         if(addRecode(selected)){
             alert('保存成功');
@@ -38,7 +38,7 @@ function Money() {
         }
     }
     return (
-        <MyLayout >
+        <MyLayout scrollTop={9999}>
             <TagsSection value={selected.tagIds}
                          onChange ={tagIds=>onChange({tagIds:tagIds})}/>
             <NotesSection value={selected.note}

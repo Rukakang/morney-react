@@ -34,7 +34,7 @@ function Statistics() {
     const {getName} = useTags();
     const hash:{[K:string]:RecodeItem[]} = {};
     const selectedRecodes = recodes.filter(t=>t.category ===category);
-    selectedRecodes.map(r=>{
+    selectedRecodes.forEach(r=>{
         const key = dayjs(r.createAt).format('YYYY年MM月DD日');
         if (!(key in hash)){
             hash[key]=[];
@@ -47,7 +47,6 @@ function Statistics() {
         if (a[0] < b[0]){return 1}
         return 0
     })
-    console.log(array)
     return (
         <Layout>
             <CategoryWrapper>
