@@ -2,6 +2,7 @@
   "name": "morney-react",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://rukakang.github.io/morney-react-website",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@babel/plugin-syntax-jsx": "^7.12.1",
