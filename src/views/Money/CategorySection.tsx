@@ -32,7 +32,7 @@ type Props= {
 const CategorySection:React.FunctionComponent<Props> = (props)=>{
     const category =props.value;
     const categoryMap ={'-':'支出','+':'收入'};
-    type Y = keyof typeof categoryMap
+    //type Y = keyof typeof categoryMap
     const [categoryList] = useState<('-'|'+')[]>(['-','+']);
     return(
         <Wrapper>
