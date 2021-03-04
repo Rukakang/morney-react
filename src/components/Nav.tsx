@@ -24,9 +24,9 @@ const NavWrapper =styled.nav`
               height: 24px;
             }
             &.selected{
-              color: aqua;
+              color: #acff77;
               .icon{
-                fill: aqua;
+                fill: #acff77;
               }
             }
         }
@@ -40,15 +40,15 @@ const Nav = () =>{
         <NavWrapper>
             <ul>
                 <li>
-                    <NavLink to="/tags" activeClassName="selected">
-                        <Icon name="label"/>
-                        标签页
-                    </NavLink>
-                </li>
-                <li>
                     <NavLink to="/money" activeClassName="selected">
                         <Icon name="money"/>
                         记账页
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/tags" activeClassName="selected">
+                        <Icon name="label"/>
+                        标签页
                     </NavLink>
                 </li>
                 <li>

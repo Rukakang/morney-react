@@ -18,10 +18,10 @@ const TopBar = styled.header`
   align-items: center;
   line-height: 20px;
   padding: 14px;
-  background: white;
+  background: #dfffc5;
 `;
 const InputWrapper = styled.div`
-  background: white;
+  background: #dfffc5;
   padding: 0 16px;
   margin-top: 8px;
 `;

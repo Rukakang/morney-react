@@ -8,29 +8,37 @@ import dayjs from "dayjs";
 
 
 const CategoryWrapper = styled.div`
-  background: white;
+  background: #dfffc5;
 `;
+
 const Item =styled.div`
   display: flex;
   justify-content: space-between;
-  background: white;
+  background: #dfffc5;
   font-size: 18px;
   line-height: 20px;
   padding: 10px 16px;
+  
+  
   >.note{
+
     margin-right: auto;
     margin-left: 16px;
     color: #999;
   }
+  
 `;
+
 const Header = styled.h3`
-  font-size: 18px;
-  line-height: 20px;
-  padding: 10px 16px;
+display: flex;
+justify-content: space-between;
+font-size: 18px;
+line-height: 20px;
+padding: 10px 16px;
 `
 function Statistics() {
     const [category,setCategory] = useState<'-'|'+'>('-');
-    const {recodes} =useRecodes();
+    const {recodes,updateRecode} =useRecodes();
     const {getName} = useTags();
     const hash:{[K:string]:RecodeItem[]} = {};
     const selectedRecodes = recodes.filter(t=>t.category ===category);
@@ -47,6 +55,7 @@ function Statistics() {
         if (a[0] < b[0]){return 1}
         return 0
     })
+    let sum = 0;
     return (
         <Layout>
             <CategoryWrapper>
@@ -57,7 +66,20 @@ function Statistics() {
             {array.map(([date,recodes])=>
                 <div key={date}>
                     <Header>
-                        {date}
+                        <span> {date}</span>
+                        <span>
+                            {recodes.map((r,index)=>{
+                                sum = sum + r.amount
+                                if(index === recodes.length -1){
+                                    const newSum = sum;
+                                    sum = 0;
+                                    return '￥'+newSum;
+                                }else{
+                                    return '';
+                                }
+                            })
+                            }
+                        </span>
                     </Header>
                     <div>
                         {recodes.map(
@@ -68,13 +90,13 @@ function Statistics() {
                                             {r.tagIds
                                                 .map(tagId => <span key={tagId}>{getName(tagId)}</span>)
                                                 .reduce((result,span,index,array)=>
-                                                    result.concat(index<array.length-1?[span,'，']:[span]),[] as ReactNode[])
+                                                    result.concat(index<array.length-1?[span,',']:[span]),[] as ReactNode[])
                                             }
                                         </div>
-                                        {r.note &&<div className="note" >
+                                        <div className="note" title={r.note}>
                                             {r.note}
-                                        </div>}
-                                        <div className = "amount" >
+                                        </div>
+                                        <div className ="amount">
                                             ￥{r.amount}
                                         </div>
                                         {/*{dayjs(r.createAt).format('YYYY年MM月DD日')}*/}

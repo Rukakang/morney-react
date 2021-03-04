@@ -13,7 +13,7 @@ const MyLayout = styled(Layout)`
   flex-direction: column;
 `;
 const CategoryWrapper = styled.div`
-  background: #c4c4c4;
+  background: #dfffc5;
 `
 
 type Category = '-'|'+';

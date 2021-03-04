@@ -4,7 +4,7 @@ const Wrapper =  styled.section`
   display: flex;
   flex-direction: column;
   >.output{
-    background: white;
+    background: #ebffe1;
     text-align: right;
     font-size: 36px;
     font-family: Consolas,monospace;
@@ -29,22 +29,22 @@ const Wrapper =  styled.section`
       }
   
       &:nth-child(1){
-        background: #f2f2f2;
+        background: #dfffc5;
       }
       &:nth-child(2),&:nth-child(5){
-        background: #E0E0E0;
+        background: #cfffb8;
       }
       &:nth-child(3),&:nth-child(6),&:nth-child(9){
-        background: #D3D3D3;
+        background: #c7ffad;
       }
       &:nth-child(4),&:nth-child(7),&:nth-child(10),&:nth-child(13){
-        background: #C1C1C1;
+        background: #c0ff9f;
       }
       &:nth-child(8),&:nth-child(11),&:nth-child(14){
-        background: #B8B8B8;
+        background: #b8ff89;
       }
       &:nth-child(12){
-        background:  #9A9A9A;
+        background: #acff77;
       }
     }
     @media(max-height: 570px){

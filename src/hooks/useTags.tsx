@@ -3,17 +3,15 @@ import createId from "../lib/createId";
 import {useUpdate} from "./useUpdate";
 
 const useTags = () =>{
-    const [tags,setTags] = useState<{ id:number;name:string }[]>([]);
+    let localTags = JSON.parse(window.localStorage.getItem('tags') || JSON.stringify([
+        {"id":createId(),"name":"衣服"},
+        {"id":createId(),"name":"吃饭饭"},
+        {"id":createId(),"name":"家庭消费"},
+        {"id":createId(),"name":"粗去玩"}
+    ]));
+    const [tags,setTags] = useState<{ id:number;name:string }[]>(localTags);
     useEffect(()=>{
-        let localTags= JSON.parse(window.localStorage.getItem('tags')||'[]')
-        if (localTags.length === 0){
-            localTags =[
-                {id:createId(),name:'衣'},
-                {id:createId(),name:'食'},
-                {id:createId(),name:'住'},
-                {id:createId(),name:'行'}]
-        }
-        setTags(localTags);
+        setTags((localTags)=>([...localTags]));
     },[])
     useUpdate(()=>{
 

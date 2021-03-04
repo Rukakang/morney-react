@@ -3,7 +3,7 @@ import React from "react";
 import {useTags} from "../../hooks/useTags";
 
 const Wrapper = styled.section`
-    background: #FFFFFF;  
+    background: #ebffe1;  
     padding: 12px 16px;
     flex-grow: 1;
     display: flex;
@@ -13,14 +13,14 @@ const Wrapper = styled.section`
     >ol{
     margin: 0 -12px;
       >li{
-        background: #f5f5f5;
+        background: #dfffc5;
         border-radius: 18px;
         display: inline-block;
         padding: 3px 18px;
         margin: 8px 12px;
         font-size: 14px;
         &.selected{
-          background: aqua;
+          background: #acff77;
         }
       }
     }
